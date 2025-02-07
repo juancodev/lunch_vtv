@@ -17,35 +17,38 @@ const LoginForm = () => {
   };
 
   return (
-    <Box maxW="sm" mx="auto" mt="10">
-      <VStack spacing={4} align="flex-start">
-        <FormControl>
-          <FormLabel>Usuario</FormLabel>
-          <Input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Ingrese su usuario"
-          />
-        </FormControl>
+    <>
+      <h2 className='text-6xl_ font-bold underline'>Inicia Sesión</h2>
+      <Box maxW="sm" mx="auto" mt="10">
+        <VStack spacing={4} align="flex-start">
+          <FormControl>
+            <FormLabel>Usuario</FormLabel>
+            <Input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Ingrese su usuario"
+            />
+          </FormControl>
 
-        <FormControl>
-          <FormLabel>Contraseña</FormLabel>
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Ingrese su contraseña"
-          />
-        </FormControl>
+          <FormControl>
+            <FormLabel>Contraseña</FormLabel>
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Ingrese su contraseña"
+            />
+          </FormControl>
 
-        {error && <Box color="red.500">{error}</Box>}
+          {error && <Box color="red.500">{error}</Box>}
 
-        <Button colorScheme="blue" onClick={handleLogin}>
-          Iniciar Sesión
-        </Button>
-      </VStack>
-    </Box>
+          <Button colorScheme="blue" onClick={handleLogin}>
+            Iniciar Sesión
+          </Button>
+        </VStack>
+      </Box>
+    </>
   );
 };
 

@@ -12,8 +12,18 @@ function App() {
       <ChakraProvider>
         <BrowserRouter>
           <Routes>
-              <Route path="/" exact component={<>LoginForm</>} />
-              <Route path="/register" component={<>RegisterForm</>} />
+              <Route path="/" element={
+                <>
+                  <LoginForm/>
+                </>
+                }
+              />
+              <Route path="/register" element={
+                <>
+                  <RegisterForm/>
+                </>
+                }
+              />
             {/* <Route path="/dashboard" component={Dashboard} /> */}
           </Routes>
         </BrowserRouter>
