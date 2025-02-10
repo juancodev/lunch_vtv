@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Input, FormControl, FormLabel, Box, VStack } from '@chakra-ui/react';
 import { Image, Stack } from '@chakra-ui/react'
-// import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  // const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     if (username === 'admin' && password === 'admin123') {
-      //history.push('/dashboard');  // Redirige al dashboard
-      console.log('Funciona');
+      navigate('/dashboard');
     } else {
       setError('Credenciales incorrectas');
     }

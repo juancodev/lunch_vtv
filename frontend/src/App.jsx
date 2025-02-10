@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import { ChakraProvider } from '@chakra-ui/react'
 import { LoginForm } from './pages/login/Login'
-import { RegisterForm } from './pages/register/Register'
+import { Dashboard } from './pages/dashboard/Dashboard'
 
 import './App.css'
 
@@ -18,13 +18,7 @@ function App() {
                 </>
                 }
               />
-              <Route path="/register" element={
-                <>
-                  <RegisterForm/>
-                </>
-                }
-              />
-            {/* <Route path="/dashboard" component={Dashboard} /> */}
+            <Route path="/dashboard" element={<Dashboard/>} />
           </Routes>
         </BrowserRouter>
       </ChakraProvider>
