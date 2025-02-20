@@ -1,15 +1,14 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from schemas.users import AuthUser
+from models.user_admin import UserAdmin
+from db.mongodb import db
 
 auth_router = APIRouter()
 
-@auth_router.post("/auth/login", tags=["auth"], response_model=AuthUser)
-def login(auth_user: AuthUser):
 
-     
+@auth_router.post("/api/auth/login")
+async def create_user(user: UserAdmin):
+    print(user)
+    user = await db.admins.insert_one(user.model_dump())
+    return JSONResponse(content=user)
 
-    return {
-        "email": auth_user.email,
-        "password": auth_user.password,
-    }
