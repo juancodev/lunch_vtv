@@ -29,6 +29,11 @@ export const NavBar = () => {
     const { logout } = useUserAuth();
     const navigate = useNavigate();
 
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    }
+
   return (
     <Disclosure as="nav" className="bg-red-600">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -112,8 +117,8 @@ export const NavBar = () => {
                 </MenuItem>
                 <MenuItem>
                   <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden cursor-pointer"
+                    onClick={handleLogout}
                   >
                     Cerrar Sesión
                   </a>
