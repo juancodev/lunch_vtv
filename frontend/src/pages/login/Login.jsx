@@ -8,9 +8,11 @@ import {
   VStack,
   useToast,
 } from '@chakra-ui/react';
+import useKeypress from 'react-use-keypress';
 import { Image, Stack } from '@chakra-ui/react'
 import { useNavigate } from 'react-router';
 import { useUserAuth } from '../../store/users';
+import imageLogo from '../../assets/login_logo.png'
 
 const LoginForm = () => {
 
@@ -83,7 +85,7 @@ const LoginForm = () => {
       <Stack className='w-full flex justify-center items-center py-8'>
         <Image
           objectFit="cover"
-          src="https://seeklogo.com/images/V/VENEZOLANA_DE_TELEVISION-logo-02E35AB2EA-seeklogo.com.png"
+          src={imageLogo}
         />
       </Stack>
       <h2 className='text-4xl! font-bold'>Inicia Sesión</h2>
