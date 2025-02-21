@@ -1,6 +1,6 @@
 export const urlAPI = {
-  baseURL: 'http://localhost:3500/api/v1',
-  users: `http://localhost:3500/api/v1/users`,
-  auth: `http://localhost:3500/api/v1/auth`,
-  profiles: `http://localhost:3500/api/v1/profiles`,
+  baseURL: 'https://lunch-vtv.onrender.com/api/v1',
+  users: `https://lunch-vtv.onrender.com/api/v1/users`,
+  auth: `https://lunch-vtv.onrender.com/api/v1/auth`,
+  profiles: `https://lunch-vtv.onrender.com/api/v1/profiles`,
 }
