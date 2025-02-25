@@ -34,3 +34,9 @@ export const getOneUserWithEmail = async (email) => {
 
   return user;
 }
+
+export const updateUser = async (_id, data) => {
+  const user = await getOneUser(_id);
+  const updatedUser = await user.updateOne(data);
+  return updatedUser;
+}

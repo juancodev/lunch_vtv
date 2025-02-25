@@ -5,7 +5,8 @@ import {
   createUser,
   listUsers,
   getOneUserWithEmail,
-  getOneUser
+  getOneUser,
+  updateUser
 } from "../controller/user.controller.js";
 
 const router = Router();
@@ -43,6 +44,17 @@ router.post('/', async (req, res, next) => {
   try {
     const data = req.body;
     const response = await createUser(data);
+    res.json(response);
+  } catch (err) {
+    next(err);
+  }
+})
+
+router.patch('/:id', async (req, res, next) => {
+  try {
+    const {id} = req.params;
+    const data = req.body;
+    const response = await updateUser(id, data);
     res.json(response);
   } catch (err) {
     next(err);
