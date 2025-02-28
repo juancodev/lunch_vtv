@@ -9,8 +9,15 @@ export const Dashboard = () => {
 
   const cardConfig = {
     admin: [
-      { title: "Administrar Usuarios", description: "Gestiona usuarios", buttonText: "Ver más" },
-      { title: "Reportes", description: "Revisar reportes", buttonText: "Ver más" },
+      {
+        title: "Administrar Usuarios",
+        description: "Gestiona usuarios",
+        buttonText: "Ver más",
+        routeNavigate: "/users"
+      },
+      { title: "Departamentos", description: "Revisar departamentos", buttonText: "Ver más" },
+      { title: "Beneficiarios", description: "lista de beneficiarios", buttonText: "Ver más" },
+      { title: "Horarios", description: "Gestiona los horarios", buttonText: "Ver más" },
     ],
     user: [
       { title: "Mis Compras", description: "Historial de compras", buttonText: "Ver más" },

@@ -9,8 +9,15 @@ import {
   Text,
   Heading,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router'
 
-export const CardComponent = ({title, description, image, buttonText, }) => {
+export const CardComponent = ({title, description, image, buttonText, routeNavigate }) => {
+  const navigate = useNavigate()
+
+  const handleNavigation = (route) => {
+    navigate(route);
+  }
+
   return (
    <>
     <SimpleGrid spacing={4} templateColumns={'repeat(auto-fill, minmax(200px, 1fr))'}>
@@ -22,7 +29,7 @@ export const CardComponent = ({title, description, image, buttonText, }) => {
             <Text>{description}</Text>
           </CardBody>
           <CardFooter>
-            <Button>{buttonText}</Button>
+            <Button onClick={() => handleNavigation(routeNavigate)}>{buttonText}</Button>
           </CardFooter>
         </Card>
     </SimpleGrid>
