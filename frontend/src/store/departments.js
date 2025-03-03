@@ -10,9 +10,10 @@ export const useDepartments = create(
       department: [],
       getAxiosAllDepartment: async () => {
         const axiosAPI = await axios.get(`${urlAPI.department}`);
-        set({
+        set((state) => ({
+          ...state,
           departmentsAll: axiosAPI.data
-        })
+        }))
         return axiosAPI.data
       },
       postAxiosDepartment: async (data) => {
@@ -22,9 +23,10 @@ export const useDepartments = create(
             'Accept': 'application/json'
           }
         })
-        set({
+        set((state) => ({
+          ...state,
           department: axiosAPI.data
-        })
+        }))
         return axiosAPI
       }
     })

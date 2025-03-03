@@ -1,10 +1,8 @@
 import { Schema } from 'mongoose';
 
-const departmentSchema = new Schema({
+export const departmentSchema = new Schema({
   name: {
-    type: String,
+    type: Schema.Types.String,
     require: true,
   }
 })
-
-export { departmentSchema };

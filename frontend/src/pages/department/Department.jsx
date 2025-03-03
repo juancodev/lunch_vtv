@@ -1,8 +1,9 @@
+import { useRef, useEffect } from 'react';
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
+  // Tfoot,
   Tr,
   Th,
   Td,
@@ -19,14 +20,20 @@ import {
   Button,
   useDisclosure
 } from '@chakra-ui/react';
-import { useRef } from 'react';
+import { MdAddCircle } from "react-icons/md";
 import { ModalComponent } from '../../components/modal/Modal'
+import { useDepartments } from '../../store/departments';
 
 export const Department = () => {
 
+  const { departmentsAll, department, getAxiosAllDepartment } = useDepartments();
   const departmentModal = useDisclosure();
   const initialRef = useRef()
   const finalRef = useRef()
+
+  useEffect(() => {
+    getAxiosAllDepartment()
+  }, [getAxiosAllDepartment, department])
 
   return (
     <>
@@ -60,7 +67,10 @@ export const Department = () => {
                     colorScheme='whiteAlpha'
                     onClick={departmentModal.onOpen}
                   >
-                    Crear Departamento +
+                    <MdAddCircle
+                      className='mr-1'
+                    />
+                    Crear Departamento
                   </Button>
                 </TableCaption>
                 <Thead>
@@ -70,18 +80,20 @@ export const Department = () => {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  <Tr>
-                    <Td>inches</Td>
-                    <Td>25.4</Td>
-                  </Tr>
-                  <Tr>
-                    <Td>feet</Td>
-                    <Td>30.48</Td>
-                  </Tr>
-                  <Tr>
-                    <Td>yards</Td>
-                    <Td>0.91444</Td>
-                  </Tr>
+                  {departmentsAll.length === 0 ? (
+                    <Tr>
+                      <Th className='w-full text-center'>No hay registro...</Th>
+                    </Tr>
+                  ): (
+                    departmentsAll.map((department) => (
+                      <>
+                        <Tr key={department.id}>
+                          <Td>{department.name}</Td>
+                          <Td>{department?.users?.length}</Td>
+                        </Tr>
+                      </>
+                    ))
+                  )}
                 </Tbody>
               </Table>
             </TableContainer>
