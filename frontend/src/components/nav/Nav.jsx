@@ -1,4 +1,4 @@
-import { 
+import {
     Disclosure,
     DisclosureButton,
     DisclosurePanel,
@@ -7,21 +7,22 @@ import {
     MenuItem,
     MenuItems
 } from '@headlessui/react'
-import { 
+import {
     Bars3Icon,
     BellIcon,
     XMarkIcon
 } from '@heroicons/react/24/outline'
 
-import { useNavigate } from 'react-router'
-import { useUserAuth } from '../../store/users'
+import { useNavigate, NavLink } from 'react-router'
+import { useUserAuth } from '../../store/auth'
 import imageLogo from '../../assets/login_logo.png'
 
 const navigation = [
-  { name: 'Inicio', href: '#', current: true },
+  { name: 'Inicio', href: '/dashboard', current: true },
   { name: 'Departamentos', href: '#', current: false },
   { name: 'Menús', href: '#', current: false },
   { name: 'Horarios', href: '#', current: false },
+  { name: 'Usuarios', href: '/users'}
 ]
 
 export const NavBar = () => {
@@ -60,14 +61,13 @@ export const NavBar = () => {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4 text-white">
                 {navigation.map((item) => (
-                  <a
+                  <NavLink
                     key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
+                    to={item.href}
                     className="text-white"
                   >
                     {item.name}
-                  </a>
+                  </NavLink>
                 ))}
               </div>
             </div>

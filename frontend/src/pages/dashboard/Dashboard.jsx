@@ -1,8 +1,11 @@
-import React from 'react'
-import { NavBar } from '../../components/nav/Nav'
-import { useUserAuth } from '../../store/users'
-import { CardComponent } from '../../components/card/Card'
-import { SimpleGrid } from '@chakra-ui/react'
+import React from 'react';
+import { useUserAuth } from '../../store/auth';
+import { CardComponent } from '../../components/card/Card';
+import { SimpleGrid } from '@chakra-ui/react';
+import imageAdmin from '../../assets/50709.jpg';
+import imageDepartaments from '../../assets/departaments.jpg';
+import imageBeneficiaries from '../../assets/beneficiaries.jpg';
+import imageSchedules from '../../assets/schedules.jpeg';
 
 export const Dashboard = () => {
   const { user } = useUserAuth()
@@ -11,13 +14,30 @@ export const Dashboard = () => {
     admin: [
       {
         title: "Administrar Usuarios",
-        description: "Gestiona usuarios",
+        description: "Gestiona usuarios del sistema y cuales son sus roles.",
+        image: imageAdmin,
         buttonText: "Ver más",
         routeNavigate: "/users"
       },
-      { title: "Departamentos", description: "Revisar departamentos", buttonText: "Ver más" },
-      { title: "Beneficiarios", description: "lista de beneficiarios", buttonText: "Ver más" },
-      { title: "Horarios", description: "Gestiona los horarios", buttonText: "Ver más" },
+      {
+        title: "Departamentos",
+        description: "Revisar departamentos en el sistema para su gestión.",
+        image: imageDepartaments,
+        buttonText: "Ver más",
+        routeNavigate: "/departments"
+      },
+      {
+        title: "Beneficiarios",
+        description: "Lista de departamentos beneficiarios para los almuerzos en la institución.",
+        image: imageBeneficiaries,
+        buttonText: "Ver más"
+      },
+      {
+        title: "Horarios",
+        description: "Gestiona los horarios para los almuerzos en la institución.",
+        image: imageSchedules,
+        buttonText: "Ver más"
+      },
     ],
     user: [
       { title: "Mis Compras", description: "Historial de compras", buttonText: "Ver más" },
@@ -29,7 +49,6 @@ export const Dashboard = () => {
 
   return (
     <>
-      <NavBar />
       <h1 className='text-5xl text-center pt-10'>Bienvenido, {user.fullName}</h1>
       <SimpleGrid columns={[1, 2, 3]} spacing={4} p={5}>
         {userCards.map((card, index) => (

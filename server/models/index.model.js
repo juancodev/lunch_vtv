@@ -7,9 +7,9 @@ import {
 import {
   profileUserSchema
 } from "#schemas/profile.schema";
-// import {
-//   ServiceSchema
-// } from "#schemas/service.schema";
+import {
+  departmentSchema
+} from "#schemas/department.schema";
 // import {
 //   ReportSchema
 // } from "#schemas/report.schema";
@@ -43,7 +43,7 @@ import {
 
 export const User = model('User', userSchema);
 export const ProfileUser = model('Profile', profileUserSchema);
-// export const Service = model('Service', ServiceSchema);
+export const Department = model('Department', departmentSchema);
 // export const Report = model('Report', ReportSchema);
 // export const Order = model('Order', orderSchema);
 // export const Banner = model('Banner', bannerSchema);

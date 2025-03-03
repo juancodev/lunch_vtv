@@ -8,10 +8,9 @@ import {
   VStack,
   useToast,
 } from '@chakra-ui/react';
-import useKeypress from 'react-use-keypress';
 import { Image, Stack } from '@chakra-ui/react'
 import { useNavigate } from 'react-router';
-import { useUserAuth } from '../../store/users';
+import { useUserAuth } from '../../store/auth';
 import imageLogo from '../../assets/login_logo.png'
 
 const LoginForm = () => {
