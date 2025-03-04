@@ -10,9 +10,9 @@ import {
 import {
   departmentSchema
 } from "#schemas/department.schema";
-// import {
-//   ReportSchema
-// } from "#schemas/report.schema";
+import {
+  scheduleSchema
+} from "#schemas/schedule.schema";
 // import {
 //   orderSchema
 // } from "#schemas/order.schema";
@@ -44,6 +44,7 @@ import {
 export const User = model('User', userSchema);
 export const ProfileUser = model('Profile', profileUserSchema);
 export const Department = model('Department', departmentSchema);
+export const Schedule = model('Schedule', scheduleSchema);
 // export const Report = model('Report', ReportSchema);
 // export const Order = model('Order', orderSchema);
 // export const Banner = model('Banner', bannerSchema);

@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useToast, Button, Select, FormControl, FormLabel } from '@chakra-ui/react';
 import { FaUserPlus } from "react-icons/fa";
 import InputField from '../fields/InputField';
 import { useUsers } from '../../store/users';
+import { useDepartments } from '../../store/departments';
 
 export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
   const { postAxiosCreateUser } = useUsers();
+  const { departmentsAll, getAxiosAllDepartment } = useDepartments();
   const toast = useToast();
   const [userData, setUserData] = useState({
     fullName: "",
@@ -15,10 +17,8 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
     department: "",
     status: true
   })
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState({
+
+  const ROLE = {
     value: {
       user: "user",
       manager: "manager",
@@ -31,17 +31,20 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
       managerIT: "Gerente de TI",
       admin: "Administrador",
     }
-  });
+  }
+
   const [loading, setLoading] = useState(false);
 
-  console.log(userData)
+  useEffect(() => {
+    getAxiosAllDepartment();
+  }, [getAxiosAllDepartment])
 
   const handleButtonClick = (event) => {
     try {
       event.preventDefault();
       setLoading(true);
 
-      if (fullName === "" || email === "" || password === "") {
+      if (userData.fullName === "" || userData.email === "" || userData.password === "") {
         toast({
           title: "No puedes dejar ningún campo en blanco.",
           position: 'top',
@@ -54,14 +57,32 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
         return
       }
 
-      const data = {
-        fullName,
-        email,
-        password,
-        role: "user",
-        status: true
-      }
+      postAxiosCreateUser(userData)
+        .then(() => {
+          setUserData({
+            ...userData,
+            fullName: "",
+            email: "",
+            password: "",
+          })
+          toast({
+            title: "Usuario creado con éxito.",
+            position: 'top',
+            status: 'success',
+            isClosable: true,
+            duration: 1500
+          });
+          setLoading(false);
+        })
     } catch (error) {
+      toast({
+        title: `Error al crear el departamento: ${error.message}`,
+        description: 'Hubo un error al crear el departamento, contacta a tu administrador',
+        position: 'top',
+        isClosable: true,
+        status: 'success'
+      })
+      setLoading(false);
       console.log(error);
     }
 
@@ -128,15 +149,34 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
                   role: event.target.value
                 })}
               >
-                <option value={role.value.admin}>{role.title.admin}</option>
-                <option value={role.value.manager}>{role.title.manager}</option>
-                <option value={role.value.managerIT}>{role.title.managerIT}</option>
-                <option value={role.value.user}>{role.title.user}</option>
+                <option value={ROLE.value.admin}>{ROLE.title.admin}</option>
+                <option value={ROLE.value.manager}>{ROLE.title.manager}</option>
+                <option value={ROLE.value.managerIT}>{ROLE.title.managerIT}</option>
+                <option value={ROLE.value.user}>{ROLE.title.user}</option>
               </Select>
             </FormControl>
 
+          <FormControl className='mb-4'>
+            <FormLabel>Departamentos*</FormLabel>
+            <Select
+              placeholder="Seleccionar Departamento"
+              onChange={event => setUserData({
+                ...userData,
+                department: event.target.value
+              })}
+            >
+              {departmentsAll?.map(item => (
+                <option
+                  key={item?._id}
+                  value={item?.name}
+                >
+                  {item?.name}
+                </option>
+              ))}
+            </Select>
+          </FormControl>
 
-          <Button className="linear mt-2 w-full rounded-xl py-[12px] text-base font-medium  transition duration-200"
+          <Button className="linear w-full rounded-xl py-[12px] text-base font-medium  transition duration-200"
             onClick={handleButtonClick}
             colorScheme="green"
             leftIcon={<FaUserPlus />}

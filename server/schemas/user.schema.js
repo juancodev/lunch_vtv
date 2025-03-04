@@ -19,7 +19,10 @@ export const userSchema = new Schema({
   role: {
     type: String,
     required: true,
-    default: 'trabajador'
+    default: 'user'
+  },
+  department: {
+    type: String,
   },
   status: {
     type: Boolean

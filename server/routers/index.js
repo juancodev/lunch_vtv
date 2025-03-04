@@ -5,7 +5,7 @@ import users from "./user.router.js";
 import authUser from "./auth.router.js";
 import profiles from "./profile.router.js";
 import department from "./department.router.js";
-// import reports from "./report.router.js";
+import schedule from "./schedule.router.js";
 // import orders from "./order.router.js";
 // import banners from "./banner.router.js";
 // import ordersReports from "./orderReport.router.js";
@@ -23,7 +23,7 @@ export const RouterAPI = (app) => {
   router.use('/auth', authUser);
   router.use('/profiles', profiles);
   router.use('/departments', department);
-  // router.use('/orders', orders);
+  router.use('/schedules', schedule);
   // router.use('/reports', reports);
   // router.use('/orders-reports', ordersReports)
   // router.use('/banners', banners);

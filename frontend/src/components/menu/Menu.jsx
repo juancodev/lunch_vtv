@@ -23,9 +23,6 @@ export const MenuComponent = () => {
           variant='outline'
         />
         <MenuList>
-          <MenuItem icon={<AddIcon />}>
-            Asignar Departamento
-          </MenuItem>
           <MenuItem icon={<EditIcon />}>
             Editar Usuario
           </MenuItem>
