@@ -87,7 +87,7 @@ export const Department = () => {
                   ): (
                     departmentsAll.map((department) => (
                       <>
-                        <Tr key={department.id}>
+                        <Tr key={department._id}>
                           <Td>{department.name}</Td>
                           <Td>{department?.users?.length}</Td>
                         </Tr>

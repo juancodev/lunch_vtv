@@ -6,6 +6,7 @@ import imageAdmin from '../../assets/50709.jpg';
 import imageDepartaments from '../../assets/departaments.jpg';
 import imageBeneficiaries from '../../assets/beneficiaries.jpg';
 import imageSchedules from '../../assets/schedules.jpeg';
+import imageMenu from '../../assets/menu.jpg';
 
 export const Dashboard = () => {
   const { user } = useUserAuth()
@@ -38,6 +39,12 @@ export const Dashboard = () => {
         image: imageSchedules,
         buttonText: "Ver más"
       },
+      {
+        title: "Menú",
+        description: "Agrega o modifica el menú del día para que todos los beneficiarios puedan visualizarlo.",
+        image: imageMenu,
+        buttonText: "Ver más"
+      }
     ],
     user: [
       { title: "Mis Compras", description: "Historial de compras", buttonText: "Ver más" },

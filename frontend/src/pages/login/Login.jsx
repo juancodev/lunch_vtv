@@ -70,11 +70,6 @@ const LoginForm = () => {
       setLoading(false)
     }
 
-    // if (email === 'admin@vtv.com' && password === 'admin123') {
-    //   navigate('/dashboard');
-    // } else {
-    //   setError('Credenciales incorrectas');
-    // }
   };
 
 
