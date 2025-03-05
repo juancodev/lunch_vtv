@@ -22,7 +22,8 @@ export const userSchema = new Schema({
     default: 'user'
   },
   department: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Department'
   },
   status: {
     type: Boolean

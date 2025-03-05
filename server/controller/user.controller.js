@@ -18,7 +18,9 @@ export const createUser = async (data) => {
 }
 
 export const listUsers = async () => {
-  const users = await User.find();
+  const users = await User.find()
+    .populate('department')
+    .exec();
   return users;
 }
 

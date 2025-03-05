@@ -75,7 +75,7 @@ export const Users = () => {
                                 <Td>{items.email}</Td>
                                 <Td>{
                                   items?.department ?
-                                  items.department :
+                                  items.department.name :
                                   'Sin departamento'
                                 }</Td>
                                 <Td>

@@ -6,6 +6,7 @@ import { Dashboard } from './pages/dashboard/Dashboard';
 import { Users } from './pages/users/Users';
 import { Department } from "./pages/department/Department";
 import { Schedule } from "./pages/schedule/Schedule";
+import { Beneficiary } from "./pages/ beneficiary/Beneficiary";
 
 function App() {
 
@@ -45,6 +46,13 @@ function App() {
               <>
                 <NavBar/>
                 <Schedule />
+              </>
+              }
+            />
+            <Route path="/beneficiaries" element={
+              <>
+                <NavBar/>
+                <Beneficiary />
               </>
               }
             />

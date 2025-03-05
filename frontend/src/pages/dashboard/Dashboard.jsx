@@ -31,7 +31,8 @@ export const Dashboard = () => {
         title: "Beneficiarios",
         description: "Lista de departamentos beneficiarios para los almuerzos en la institución.",
         image: imageBeneficiaries,
-        buttonText: "Ver más"
+        buttonText: "Ver más",
+        routeNavigate: "/beneficiaries"
       },
       {
         title: "Horarios",

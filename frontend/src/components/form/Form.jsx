@@ -168,7 +168,7 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
               {departmentsAll?.map(item => (
                 <option
                   key={item?._id}
-                  value={item?.name}
+                  value={item?._id}
                 >
                   {item?.name}
                 </option>
