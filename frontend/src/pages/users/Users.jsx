@@ -5,9 +5,6 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
   Container,
   Card,
   CardHeader,
@@ -25,10 +22,10 @@ import {
 import { useUsers } from '../../store/users';
 import { MenuComponent } from '../../components/menu/Menu';
 import { FormComponent } from '../../components/form/Form';
+import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
 
 export const Users = () => {
   const { users, user, getAllUsers} = useUsers();
-  // const [usersAll, setUsersAll] = useState([]);
 
 
   useEffect(() => {
@@ -38,18 +35,7 @@ export const Users = () => {
   return (
     <>
       <Container maxW='container.lg'>
-        <Breadcrumb className='mt-8 mb-10'>
-          <BreadcrumbItem>
-            <BreadcrumbLink>
-              Inicio
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <BreadcrumbLink>
-              Administrar Usuarios
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
+        <BreadcrumbComponent route={'Administrar Usuarios'}/>
         <Card>
           <CardHeader className='bg-red-500'>
             <Text

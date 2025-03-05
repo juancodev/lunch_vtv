@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import { ChakraProvider } from '@chakra-ui/react';
 import { LoginForm } from './pages/login/Login';
+import { NavBar } from './components/nav/Nav'
 import { Dashboard } from './pages/dashboard/Dashboard';
 import { Users } from './pages/users/Users';
-import { NavBar } from './components/nav/Nav'
 import { Department } from "./pages/department/Department";
+import { Schedule } from "./pages/schedule/Schedule";
 
 function App() {
 
@@ -37,6 +38,13 @@ function App() {
               <>
                 <NavBar/>
                 <Department />
+              </>
+              }
+            />
+            <Route path="/schedules" element={
+              <>
+                <NavBar/>
+                <Schedule />
               </>
               }
             />

@@ -13,9 +13,6 @@ import {
   CardHeader,
   CardBody,
   Text,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
   Container,
   Button,
   useDisclosure
@@ -23,6 +20,7 @@ import {
 import { MdAddCircle } from "react-icons/md";
 import { ModalComponent } from '../../components/modal/Modal'
 import { useDepartments } from '../../store/departments';
+import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
 
 export const Department = () => {
 
@@ -38,18 +36,7 @@ export const Department = () => {
   return (
     <>
       <Container maxW='container.lg'>
-        <Breadcrumb className='mt-8 mb-10'>
-          <BreadcrumbItem>
-            <BreadcrumbLink>
-              Inicio
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <BreadcrumbLink>
-              Departamentos
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
+        <BreadcrumbComponent route={'Departamentos'}/>
         <Card>
           <CardHeader className='bg-red-500'>
             <Text

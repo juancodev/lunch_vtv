@@ -8,5 +8,6 @@ export const urlAPI = {
   users: `${baseURL}/users`,
   auth: `${baseURL}/auth`,
   profiles: `${baseURL}/profiles`,
-  department: `${baseURL}/departments`
+  department: `${baseURL}/departments`,
+  schedule: `${baseURL}/schedules`
 }

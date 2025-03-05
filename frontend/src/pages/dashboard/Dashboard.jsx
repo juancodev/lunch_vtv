@@ -37,7 +37,8 @@ export const Dashboard = () => {
         title: "Horarios",
         description: "Gestiona los horarios para los almuerzos en la institución.",
         image: imageSchedules,
-        buttonText: "Ver más"
+        buttonText: "Ver más",
+        routeNavigate: "/schedules"
       },
       {
         title: "Menú",
