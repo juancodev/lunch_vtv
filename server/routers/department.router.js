@@ -1,14 +1,15 @@
 import { Router } from 'express';
 import {
   getDepartments,
-  createDepartment
+  createDepartment,
+  listDepartmentsWithUserCount
 } from '#controller/department.controller';
 
 const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const response = await getDepartments();
+    const response = await listDepartmentsWithUserCount();
     res.json(response);
   } catch (error) {
     next(error);

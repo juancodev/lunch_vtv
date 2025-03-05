@@ -76,7 +76,7 @@ export const Department = () => {
                       <>
                         <Tr key={department._id}>
                           <Td>{department.name}</Td>
-                          <Td>{department?.users?.length}</Td>
+                          <Td>{department?.userCount}</Td>
                         </Tr>
                       </>
                     ))
