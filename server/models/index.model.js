@@ -13,9 +13,9 @@ import {
 import {
   scheduleSchema
 } from "#schemas/schedule.schema";
-// import {
-//   orderSchema
-// } from "#schemas/order.schema";
+import {
+  beneficiarySchema
+} from "#schemas/beneficiary.schema";
 
 // import {
 //   bannerSchema
@@ -45,7 +45,7 @@ export const User = model('User', userSchema);
 export const ProfileUser = model('Profile', profileUserSchema);
 export const Department = model('Department', departmentSchema);
 export const Schedule = model('Schedule', scheduleSchema);
-// export const Report = model('Report', ReportSchema);
+export const Beneficiary = model('Beneficiary', beneficiarySchema);
 // export const Order = model('Order', orderSchema);
 // export const Banner = model('Banner', bannerSchema);
 // export const OrderReport = model('OrderReport', orderReportSchema);
