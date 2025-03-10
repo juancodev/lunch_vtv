@@ -39,12 +39,12 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
     getAxiosAllDepartment();
   }, [getAxiosAllDepartment])
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = async (event) => {
     try {
       event.preventDefault();
       setLoading(true);
 
-      if (userData.fullName === "" || userData.email === "" || userData.password === "") {
+      if (userData.fullName === "" | userData.email === "" | userData.password === "" | userData.department === "" | userData.role === "") {
         toast({
           title: "No puedes dejar ningún campo en blanco.",
           position: 'top',
@@ -57,23 +57,24 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
         return
       }
 
-      postAxiosCreateUser(userData)
-        .then(() => {
-          setUserData({
-            ...userData,
-            fullName: "",
-            email: "",
-            password: "",
-          })
-          toast({
-            title: "Usuario creado con éxito.",
-            position: 'top',
-            status: 'success',
-            isClosable: true,
-            duration: 1500
-          });
-          setLoading(false);
-        })
+      await postAxiosCreateUser(userData);
+      setUserData({
+        fullName: "",
+        email: "",
+        password: "",
+        role: "user",
+        department: "",
+        status: true
+      });
+      toast({
+        title: "Usuario creado con éxito.",
+        position: 'top',
+        status: 'success',
+        isClosable: true,
+        duration: 1500
+      });
+      setLoading(false);
+
     } catch (error) {
       toast({
         title: `Error al crear el departamento: ${error.message}`,
@@ -103,9 +104,10 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
             variant="auth"
             extra="mb-3"
             label="Nombre Completo*"
-            placeholder="Juan Montilla"
+            placeholder="Nombre Completo..."
             id="fullName"
             type="text"
+            value={userData.fullName}
             onChange={event => setUserData({
               ...userData,
               fullName: event.target.value
@@ -119,7 +121,8 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
             label="Correo*"
             placeholder="mail@vtv.com"
             id="email"
-            type="text"
+            type="email"
+            value={userData.email}
             onChange={event => setUserData({
               ...userData,
               email: event.target.value
@@ -134,15 +137,17 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
             placeholder="Min. 8 characters"
             id="password"
             type="password"
+            value={userData.password}
             onChange={event => setUserData({
               ...userData,
               password: event.target.value
             })}
           />
 
-            <FormControl className='mb-3'>
-              <FormLabel>Roles*</FormLabel>
+            <FormControl className='mb-3' isRequired>
+              <FormLabel>Roles</FormLabel>
               <Select
+                value={userData.role}
                 placeholder="Seleccionar Rol"
                 onChange={event => setUserData({
                   ...userData,
@@ -159,6 +164,7 @@ export const FormComponent = ({titleForm, descriptionForm, buttonTextForm}) => {
           <FormControl className='mb-4'>
             <FormLabel>Departamentos*</FormLabel>
             <Select
+              value={userData.department}
               placeholder="Seleccionar Departamento"
               onChange={event => setUserData({
                 ...userData,

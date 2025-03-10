@@ -48,9 +48,78 @@ export const Dashboard = () => {
         buttonText: "Ver más"
       }
     ],
+    manager: [
+      {
+        title: "Beneficiarios",
+        description: "Lista de departamentos beneficiarios para los almuerzos en la institución.",
+        image: imageBeneficiaries,
+        buttonText: "Ver más",
+        routeNavigate: "/beneficiaries"
+      },
+      {
+        title: "Departamentos",
+        description: "Revisar departamentos en el sistema para su gestión.",
+        image: imageDepartaments,
+        buttonText: "Ver más",
+        routeNavigate: "/departments"
+      },
+      {
+        title: "Horarios",
+        description: "Gestiona los horarios para los almuerzos en la institución.",
+        image: imageSchedules,
+        buttonText: "Ver más",
+        routeNavigate: "/schedules"
+      },
+      {
+        title: "Menú",
+        description: "Agrega o modifica el menú del día para que todos los beneficiarios puedan visualizarlo.",
+        image: imageMenu,
+        buttonText: "Ver más"
+      }
+    ],
+    managerIT: [
+      {
+        title: "Beneficiarios",
+        description: "Lista de departamentos beneficiarios para los almuerzos en la institución.",
+        image: imageBeneficiaries,
+        buttonText: "Ver más",
+        routeNavigate: "/beneficiaries"
+      },
+      {
+        title: "Departamentos",
+        description: "Revisar departamentos en el sistema para su gestión.",
+        image: imageDepartaments,
+        buttonText: "Ver más",
+        routeNavigate: "/departments"
+      },
+      {
+        title: "Horarios",
+        description: "Gestiona los horarios para los almuerzos en la institución.",
+        image: imageSchedules,
+        buttonText: "Ver más",
+        routeNavigate: "/schedules"
+      },
+      {
+        title: "Menú",
+        description: "Agrega o modifica el menú del día para que todos los beneficiarios puedan visualizarlo.",
+        image: imageMenu,
+        buttonText: "Ver más"
+      }
+    ],
     user: [
-      { title: "Mis Compras", description: "Historial de compras", buttonText: "Ver más" },
-      { title: "Soporte", description: "Centro de ayuda", buttonText: "Contactar" },
+      {
+        title: "Horarios",
+        description: "Gestiona los horarios para los almuerzos en la institución.",
+        image: imageSchedules,
+        buttonText: "Ver más",
+        routeNavigate: "/schedules"
+      },
+      {
+        title: "Menú",
+        description: "Agrega o modifica el menú del día para que todos los beneficiarios puedan visualizarlo.",
+        image: imageMenu,
+        buttonText: "Ver más"
+      }
     ],
   }
 

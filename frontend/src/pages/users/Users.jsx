@@ -59,6 +59,7 @@ export const Users = () => {
                           <Th>Nombre</Th>
                           <Th>Correo</Th>
                           <Th>Departamento</Th>
+                          <Th>Estatus</Th>
                           <Th>Opciones</Th>
                         </Tr>
                       </Thead>
@@ -78,6 +79,7 @@ export const Users = () => {
                                   items.department.name :
                                   'Sin departamento'
                                 }</Td>
+                                <Td>{items.status ? 'Activo' : 'Inactivo'}</Td>
                                 <Td>
                                   <MenuComponent/>
                                 </Td>

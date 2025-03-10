@@ -21,6 +21,7 @@ import { MdAddCircle } from "react-icons/md";
 import { ModalComponent } from '../../components/modal/Modal'
 import { useDepartments } from '../../store/departments';
 import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
+import { MenuComponent } from '../../components/menu/Menu'
 
 export const Department = () => {
 
@@ -64,6 +65,7 @@ export const Department = () => {
                   <Tr>
                     <Th>Departamentos</Th>
                     <Th>Cantidad de usuarios</Th>
+                    <Th>Opciones</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -77,6 +79,7 @@ export const Department = () => {
                         <Tr key={department._id}>
                           <Td>{department.name}</Td>
                           <Td>{department?.userCount}</Td>
+                          <Td><MenuComponent/></Td>
                         </Tr>
                       </>
                     ))

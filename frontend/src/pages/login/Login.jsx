@@ -19,6 +19,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [invalid, setInvalid] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const toast = useToast();
@@ -27,10 +28,27 @@ const LoginForm = () => {
     event.preventDefault();
 
     setLoading(true);
+    setInvalid(false);
 
     const data = {
       email,
       password
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      toast({
+        title: `El formato del correo electrónico no es válido`,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'top'
+      });
+      setLoading(false);
+      setInvalid(true);
+      setPassword('');
+      return;
     }
 
     try {
@@ -92,7 +110,9 @@ const LoginForm = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Ingrese su usuario"
+              placeholder="Ingrese su correo electrónico"
+              isInvalid={invalid}
+              isRequired
             />
           </FormControl>
 
@@ -103,6 +123,7 @@ const LoginForm = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ingrese su contraseña"
+              isRequired
             />
           </FormControl>
 
