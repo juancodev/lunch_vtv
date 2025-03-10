@@ -9,5 +9,6 @@ export const urlAPI = {
   auth: `${baseURL}/auth`,
   profiles: `${baseURL}/profiles`,
   department: `${baseURL}/departments`,
-  schedule: `${baseURL}/schedules`
+  schedule: `${baseURL}/schedules`,
+  beneficiary: `${baseURL}/beneficiaries`
 }

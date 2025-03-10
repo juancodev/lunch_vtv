@@ -17,15 +17,27 @@ import {
   Button,
   useDisclosure
 } from '@chakra-ui/react';
-import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
 import { MdAddCircle } from "react-icons/md";
+import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
 import { ModalComponent } from '../../components/modal/Modal'
+import { useUsers } from '../../store/users';
+import { useBeneficiaryStore } from '../../store/beneficiary';
 
 export const Beneficiary = () => {
 
+  const {
+    beneficiaries,
+    beneficiary,
+    getAllBeneficiaries
+  } = useBeneficiaryStore();
+  const { users } = useUsers();
   const beneficiaryModal = useDisclosure();
   const initialRef = useRef()
   const finalRef = useRef()
+
+  useEffect(() => {
+    getAllBeneficiaries();
+  }, [getAllBeneficiaries, beneficiary]);
 
   return (
     <>
@@ -51,30 +63,35 @@ export const Beneficiary = () => {
                     <MdAddCircle
                       className='mr-1'
                     />
-                    Crear Departamento
+                    Agregar Beneficiario
                   </Button>
                 </TableCaption>
                 <Thead>
                   <Tr>
-                    <Th>Departamentos</Th>
-                    <Th>Cantidad de usuarios</Th>
+                    <Th>Nombre</Th>
+                    <Th>Correo</Th>
+                    <Th>Departamento</Th>
+                    <Th>Dispone</Th>
+                    <Th>Opciones</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {/* {departmentsAll.length === 0 ? (
-                    <Tr>
-                      <Th className='w-full text-center'>No hay registro...</Th>
-                    </Tr>
-                  ): (
-                    departmentsAll.map((department) => (
+                  {beneficiaries.length > 0 ? (
+                    beneficiaries.map((beneficiaryData) => (
                       <>
-                        <Tr key={department._id}>
-                          <Td>{department.name}</Td>
-                          <Td>{department?.userCount}</Td>
+                        <Tr key={beneficiaryData?._id}>
+                          <Td>{beneficiaryData?.user?.fullName}</Td>
+                          <Td>{beneficiaryData?.user?.email}</Td>
+                          <Td>{beneficiaryData?.user?.department ? beneficiaryData?.user?.department?.name : 'Sin departamento'}</Td>
+                          <Td>{beneficiaryData?.has ? 'Sí' : 'No'}</Td>
                         </Tr>
                       </>
                     ))
-                  )} */}
+                  ) : (
+                    <>
+                     <Th>No hay resultado...</Th>
+                    </>
+                  )}
                 </Tbody>
               </Table>
             </TableContainer>
@@ -89,6 +106,7 @@ export const Beneficiary = () => {
         initialRef={initialRef}
         finalRef={finalRef}
         title={'Agregar Beneficiario'}
+        userData={users}
       />
     </>
   )

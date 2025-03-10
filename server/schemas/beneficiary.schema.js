@@ -10,6 +10,10 @@ export const beneficiarySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Schedule'
   },
+  times: {
+    type: String,
+    required: true
+  },
   has: {
     type: Boolean,
     default: false
