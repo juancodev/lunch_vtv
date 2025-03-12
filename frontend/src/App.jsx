@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import { ChakraProvider } from '@chakra-ui/react';
+import {ProtectRoute} from './components/protectRoute/ProtectRoute';
 import { LoginForm } from './pages/login/Login';
 import { NavBar } from './components/nav/Nav'
 import { Dashboard } from './pages/dashboard/Dashboard';
@@ -23,36 +24,46 @@ function App() {
             />
             <Route path="/dashboard" element={
                 <>
-                  <NavBar/>
-                  <Dashboard/>
+                  <ProtectRoute>
+                    <NavBar/>
+                    <Dashboard/>
+                  </ProtectRoute>
                 </>
                 }
             />
             <Route path="/users" element={
                 <>
-                  <NavBar/>
-                  <Users />
+                  <ProtectRoute>
+                    <NavBar/>
+                    <Users />
+                  </ProtectRoute>
                 </>
                 }
             />
             <Route path="/departments" element={
               <>
-                <NavBar/>
-                <Department />
+                <ProtectRoute>
+                  <NavBar/>
+                  <Department />
+                </ProtectRoute>
               </>
               }
             />
             <Route path="/schedules" element={
               <>
-                <NavBar/>
-                <Schedule />
+                <ProtectRoute>
+                  <NavBar/>
+                  <Schedule />
+                </ProtectRoute>
               </>
               }
             />
             <Route path="/beneficiaries" element={
               <>
-                <NavBar/>
-                <Beneficiary />
+                <ProtectRoute>
+                  <NavBar/>
+                  <Beneficiary />
+                </ProtectRoute>
               </>
               }
             />

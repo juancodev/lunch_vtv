@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
 import { Navigate } from 'react-router';
-import { useUsers } from '../../store/users';
+import { useUserAuth } from '../../store/auth';
 
 export const ProtectRoute = ({children}) => {
-  const { user } = useUsers();
+  const { user } = useUserAuth();
   const [redirectToLogin, setRedirectToLogin] = useState(false);
 
   useEffect(() => {
