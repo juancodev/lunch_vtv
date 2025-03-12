@@ -22,9 +22,11 @@ import { ModalComponent } from '../../components/modal/Modal'
 import { useDepartments } from '../../store/departments';
 import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
 import { MenuComponent } from '../../components/menu/Menu'
+import { useUserAuth } from '../../store/auth';
 
 export const Department = () => {
 
+  const { user } = useUserAuth();
   const { departmentsAll, department, getAxiosAllDepartment } = useDepartments();
   const departmentModal = useDisclosure();
   const initialRef = useRef()
@@ -47,25 +49,56 @@ export const Department = () => {
               Lista de Departamentos</Text>
           </CardHeader>
           <CardBody>
+          { user?.role === 'admin' ? (
+            <TableContainer>
+            <Table variant='simple'>
+              <TableCaption placement='top' className='absolute top-0 right-0'>
+                <Button
+                  size='sm'
+                  colorScheme='whiteAlpha'
+                  onClick={departmentModal.onOpen}
+                >
+                  <MdAddCircle
+                    className='mr-1'
+                  />
+                  Crear Departamento
+                </Button>
+              </TableCaption>
+              <Thead>
+                <Tr>
+                  <Th>Departamentos</Th>
+                  <Th>Cantidad de usuarios</Th>
+                  <Th>Opciones</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {departmentsAll.length === 0 ? (
+                  <Tr>
+                    <Th className='w-full text-center'>No hay registro...</Th>
+                  </Tr>
+                ): (
+                  departmentsAll.map((department) => (
+                    <>
+                      <Tr key={department._id}>
+                        <Td>{department.name}</Td>
+                        <Td>{department?.userCount}</Td>
+                        <Td><MenuComponent/></Td>
+                      </Tr>
+                    </>
+                  ))
+                )}
+              </Tbody>
+            </Table>
+          </TableContainer>
+          ) : (
             <TableContainer>
               <Table variant='simple'>
                 <TableCaption placement='top' className='absolute top-0 right-0'>
-                  <Button
-                    size='sm'
-                    colorScheme='whiteAlpha'
-                    onClick={departmentModal.onOpen}
-                  >
-                    <MdAddCircle
-                      className='mr-1'
-                    />
-                    Crear Departamento
-                  </Button>
                 </TableCaption>
                 <Thead>
                   <Tr>
                     <Th>Departamentos</Th>
                     <Th>Cantidad de usuarios</Th>
-                    <Th>Opciones</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
@@ -79,7 +112,6 @@ export const Department = () => {
                         <Tr key={department._id}>
                           <Td>{department.name}</Td>
                           <Td>{department?.userCount}</Td>
-                          <Td><MenuComponent/></Td>
                         </Tr>
                       </>
                     ))
@@ -87,6 +119,7 @@ export const Department = () => {
                 </Tbody>
               </Table>
             </TableContainer>
+          )}
           </CardBody>
         </Card>
       </Container>
