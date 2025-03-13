@@ -7,9 +7,9 @@ import {
 } from "zustand/middleware";
 import {
   urlAPI
-} from "config";
+} from "../config/";
 
-export const useProfileStore = create(
+export const useProfile = create(
   persist(
     (set) => ({
       userProfile: {},

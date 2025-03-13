@@ -22,6 +22,7 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
 import { ModalComponent } from '../../components/modal/Modal'
 import { useUsers } from '../../store/users';
 import { useBeneficiaryStore } from '../../store/beneficiary';
+import { useUserAuth } from '@/store/auth';
 
 export const Beneficiary = () => {
 
@@ -30,6 +31,7 @@ export const Beneficiary = () => {
     beneficiary,
     getAllBeneficiaries
   } = useBeneficiaryStore();
+  const {user} = useUserAuth();
   const { users } = useUsers();
   const beneficiaryModal = useDisclosure();
   const initialRef = useRef()
@@ -52,49 +54,82 @@ export const Beneficiary = () => {
               Lista de Beneficiarios</Text>
           </CardHeader>
           <CardBody>
-            <TableContainer>
-              <Table variant='simple'>
-                <TableCaption placement='top' className='absolute top-0 right-0'>
-                  <Button
-                    size='sm'
-                    colorScheme='whiteAlpha'
-                    onClick={beneficiaryModal.onOpen}
-                  >
-                    <MdAddCircle
-                      className='mr-1'
-                    />
-                    Agregar Beneficiario
-                  </Button>
-                </TableCaption>
-                <Thead>
-                  <Tr>
-                    <Th>Nombre</Th>
-                    <Th>Correo</Th>
-                    <Th>Departamento</Th>
-                    <Th>Dispone</Th>
-                    <Th>Opciones</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {beneficiaries.length > 0 ? (
-                    beneficiaries.map((beneficiaryData) => (
+            {user?.role !== 'user' ? (
+              <TableContainer>
+                <Table variant='simple'>
+                  <TableCaption placement='top' className='absolute top-0 right-0'>
+                    <Button
+                      size='sm'
+                      colorScheme='whiteAlpha'
+                      onClick={beneficiaryModal.onOpen}
+                    >
+                      <MdAddCircle
+                        className='mr-1'
+                      />
+                      Agregar Beneficiario
+                    </Button>
+                  </TableCaption>
+                  <Thead>
+                    <Tr>
+                      <Th>Nombre</Th>
+                      <Th>Correo</Th>
+                      <Th>Departamento</Th>
+                      <Th>Dispone</Th>
+                      <Th>Opciones</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {beneficiaries.length > 0 ? (
+                      beneficiaries.map((beneficiaryData) => (
+                        <>
+                          <Tr key={beneficiaryData?._id}>
+                            <Td>{beneficiaryData?.user?.fullName}</Td>
+                            <Td>{beneficiaryData?.user?.email}</Td>
+                            <Td>{beneficiaryData?.user?.department ? beneficiaryData?.user?.department?.name : 'Sin departamento'}</Td>
+                            <Td>{beneficiaryData?.has ? 'Sí' : 'No'}</Td>
+                          </Tr>
+                        </>
+                      ))
+                    ) : (
                       <>
-                        <Tr key={beneficiaryData?._id}>
-                          <Td>{beneficiaryData?.user?.fullName}</Td>
-                          <Td>{beneficiaryData?.user?.email}</Td>
-                          <Td>{beneficiaryData?.user?.department ? beneficiaryData?.user?.department?.name : 'Sin departamento'}</Td>
-                          <Td>{beneficiaryData?.has ? 'Sí' : 'No'}</Td>
-                        </Tr>
+                        <Th>No hay resultado...</Th>
                       </>
-                    ))
-                  ) : (
-                    <>
-                     <Th>No hay resultado...</Th>
-                    </>
-                  )}
-                </Tbody>
-              </Table>
-            </TableContainer>
+                    )}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+            ) : (
+                <TableContainer>
+                  <Table variant='simple'>
+                    <Thead>
+                      <Tr>
+                        <Th>Nombre</Th>
+                        <Th>Correo</Th>
+                        <Th>Departamento</Th>
+                        <Th>Dispone</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {beneficiaries.length > 0 ? (
+                        beneficiaries.map((beneficiaryData) => (
+                          <>
+                            <Tr key={beneficiaryData?._id}>
+                              <Td>{beneficiaryData?.user?.fullName}</Td>
+                              <Td>{beneficiaryData?.user?.email}</Td>
+                              <Td>{beneficiaryData?.user?.department ? beneficiaryData?.user?.department?.name : 'Sin departamento'}</Td>
+                              <Td>{beneficiaryData?.has ? 'Sí' : 'No'}</Td>
+                            </Tr>
+                          </>
+                        ))
+                      ) : (
+                        <>
+                          <Th>No hay resultado...</Th>
+                        </>
+                      )}
+                    </Tbody>
+                  </Table>
+                </TableContainer>
+            )}
           </CardBody>
         </Card>
       </Container>
