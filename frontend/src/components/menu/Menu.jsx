@@ -15,13 +15,16 @@ import {
 } from '@chakra-ui/icons'
 import { useUserAuth } from '@/store/auth';
 import { useDepartments } from "@/store/departments";
+import { useBeneficiaryStore } from '@/store/beneficiary';
 
 
-export const MenuComponent = ({type, idDepartment}) => {
+export const MenuComponent = ({type, idDepartment, idBeneficiary}) => {
 
   const { user } = useUserAuth();
   const modalEditUser = useDisclosure();
   const { deleteAxiosDepartment } = useDepartments();
+  const { deleteBeneficiary } = useBeneficiaryStore();
+
 
   if (type === 'admin') {
     return (
@@ -102,7 +105,10 @@ export const MenuComponent = ({type, idDepartment}) => {
             >
               Editar Beneficiario
             </MenuItem>
-            <MenuItem icon={<DeleteIcon />}>
+            <MenuItem 
+              icon={<DeleteIcon />}
+              onClick={async () => await deleteBeneficiary(idBeneficiary)}
+            >
               Eliminar Beneficiario
             </MenuItem>
           </MenuList>

@@ -126,7 +126,12 @@ export const Beneficiary = () => {
                             <Td>{beneficiaryData?.user?.department ? beneficiaryData?.user?.department?.name : 'Sin departamento'}</Td>
                             <Td>{beneficiaryData?.has ? 'Sí' : 'No'}</Td>
                             <Td>{beneficiaryData?.schedule?.schedule}</Td>
-                            <Td><MenuComponent type={'beneficiary'}/></Td>
+                            <Td>
+                              <MenuComponent 
+                                type={'beneficiary'}
+                                idBeneficiary={beneficiaryData?._id}
+                              />
+                            </Td>
                           </Tr>
                         </>
                       ))
