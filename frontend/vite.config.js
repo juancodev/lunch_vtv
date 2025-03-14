@@ -24,5 +24,8 @@ export default defineConfig({
         replacement: path.resolve(path.join(__dirname, './src/pages'))
       }
     ]
+  },
+  build: {
+    chunkSizeWarningLimit: 1600
   }
 })
