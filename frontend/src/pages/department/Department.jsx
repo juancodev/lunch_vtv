@@ -21,20 +21,20 @@ import { MdAddCircle } from "react-icons/md";
 import { ModalComponent } from '../../components/modal/Modal'
 import { useDepartments } from '../../store/departments';
 import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
-import { MenuComponent } from '../../components/menu/Menu'
-import { useUserAuth } from '../../store/auth';
+import { MenuComponent } from '@components/menu/Menu'
+import { useUserAuth } from '@/store/auth';
 
 export const Department = () => {
 
   const { user } = useUserAuth();
-  const { departmentsAll, department, getAxiosAllDepartment } = useDepartments();
+  const { departmentsAll, department, getAxiosAllDepartment, deleteDepartment } = useDepartments();
   const departmentModal = useDisclosure();
   const initialRef = useRef()
   const finalRef = useRef()
 
   useEffect(() => {
     getAxiosAllDepartment()
-  }, [getAxiosAllDepartment, department])
+  }, [getAxiosAllDepartment, department, deleteDepartment]);
 
   return (
     <>
@@ -82,7 +82,12 @@ export const Department = () => {
                       <Tr key={department._id}>
                         <Td>{department.name}</Td>
                         <Td>{department?.userCount}</Td>
-                        <Td><MenuComponent/></Td>
+                        <Td>
+                          <MenuComponent 
+                            type={'department'}
+                            idDepartment={department._id}
+                          />
+                        </Td>
                       </Tr>
                     </>
                   ))

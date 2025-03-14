@@ -14,12 +14,14 @@ import {
   IconButton
 } from '@chakra-ui/icons'
 import { useUserAuth } from '@/store/auth';
+import { useDepartments } from "@/store/departments";
 
 
-export const MenuComponent = ({type}) => {
+export const MenuComponent = ({type, idDepartment}) => {
 
   const { user } = useUserAuth();
   const modalEditUser = useDisclosure();
+  const { deleteAxiosDepartment } = useDepartments();
 
   if (type === 'admin') {
     return (
@@ -49,7 +51,35 @@ export const MenuComponent = ({type}) => {
       </>
     )
   } else if (type === 'department') {
-    return
+    return (
+      <>
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            aria-label='Options'
+            icon={<HamburgerIcon />}
+            variant='outline'
+          />
+          <MenuList>
+            <MenuItem
+              icon={<EditIcon />}
+              onClick={() =>
+                modalEditUser.onOpen()
+              }
+
+            >
+              Editar Departamento
+            </MenuItem>
+            <MenuItem 
+              icon={<DeleteIcon />}
+              onClick={async () => await deleteAxiosDepartment(idDepartment)}  
+            >
+              Eliminar Departamento
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      </>
+    )
   } else if (type === 'schedule') {
     return
   } else if (type === 'beneficiary') {

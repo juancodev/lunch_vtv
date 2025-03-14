@@ -45,7 +45,8 @@ export const Dashboard = () => {
         title: "Menú",
         description: "Agrega o modifica el menú del día para que todos los beneficiarios puedan visualizarlo.",
         image: imageMenu,
-        buttonText: "Ver más"
+        buttonText: "Ver más",
+        routeNavigate: "/menu"
       }
     ],
     manager: [
@@ -74,7 +75,8 @@ export const Dashboard = () => {
         title: "Menú",
         description: "Agrega o modifica el menú del día para que todos los beneficiarios puedan visualizarlo.",
         image: imageMenu,
-        buttonText: "Ver más"
+        buttonText: "Ver más",
+        routeNavigate: "/menu"
       }
     ],
     managerIT: [
@@ -103,7 +105,8 @@ export const Dashboard = () => {
         title: "Menú",
         description: "Agrega o modifica el menú del día para que todos los beneficiarios puedan visualizarlo.",
         image: imageMenu,
-        buttonText: "Ver más"
+        buttonText: "Ver más",
+        routeNavigate: "/menu"
       }
     ],
     user: [
@@ -118,7 +121,8 @@ export const Dashboard = () => {
         title: "Menú",
         description: "Agrega o modifica el menú del día para que todos los beneficiarios puedan visualizarlo.",
         image: imageMenu,
-        buttonText: "Ver más"
+        buttonText: "Ver más",
+        routeNavigate: "/menu"
       }
     ],
   }
