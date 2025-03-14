@@ -13,6 +13,7 @@ export const useUsers = create(
   persist((set) => ({
     users: [],
     user: {},
+    userDeleted: {},
     getAllUsers: async () => {
       const axiosAPI = await axios.get(`${urlAPI.users}`);
       set({
@@ -31,6 +32,13 @@ export const useUsers = create(
         user: axiosAPI.data
       })
       return axiosAPI.data
+    },
+    deleteAxiosUser: async (id) => {
+      const axiosAPI = await axios.delete(`${urlAPI.users}/${id}`);
+      set({
+        userDeleted: axiosAPI.data
+      })
+      return axios
     }
   }),
   {

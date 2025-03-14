@@ -25,12 +25,12 @@ import { FormComponent } from '../../components/form/Form';
 import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
 
 export const Users = () => {
-  const { users, user, getAllUsers} = useUsers();
+  const { users, user, getAllUsers, userDeleted} = useUsers();
 
 
   useEffect(() => {
     getAllUsers()
-  }, [getAllUsers, user])
+  }, [getAllUsers, user, userDeleted])
 
   return (
     <>
@@ -81,7 +81,7 @@ export const Users = () => {
                                 }</Td>
                                 <Td>{items.status ? 'Activo' : 'Inactivo'}</Td>
                                 <Td>
-                                  <MenuComponent/>
+                                  <MenuComponent type={'admin'} idUser={items?._id}/>
                                 </Td>
                               </Tr>
                             </>

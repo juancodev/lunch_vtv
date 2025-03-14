@@ -108,7 +108,12 @@ export const Schedule = () => {
                             <Td>{schedule?.day}</Td>
                             <Td>{schedule?.time_start}</Td>
                             <Td>{schedule?.time_end}</Td>
-                            <Td><MenuComponent/></Td>
+                            <Td>
+                              <MenuComponent 
+                                type={'schedule'}
+                                idSchedule={schedule?._id}
+                              />
+                            </Td>
                           </Tr>
                         ))
                       ) : (
