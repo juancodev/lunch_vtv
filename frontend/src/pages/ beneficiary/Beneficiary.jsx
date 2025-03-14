@@ -24,6 +24,8 @@ import { useUsers } from '../../store/users';
 import { useBeneficiaryStore } from '../../store/beneficiary';
 import { useUserAuth } from '@/store/auth';
 import { MenuComponent } from '@components/menu/Menu';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import ReportPDF from '@components/report/ReportPDF';
 
 export const Beneficiary = () => {
 
@@ -41,6 +43,24 @@ export const Beneficiary = () => {
   useEffect(() => {
     getAllBeneficiaries();
   }, [getAllBeneficiaries, beneficiary]);
+
+    // Preparar los datos para el reporte
+    const reportData = beneficiaries
+    .filter(b => b.has)
+    .reduce((acc, b) => {
+      const tipo = b.schedule?.schedule;
+      const departamento = b.user?.department?.name || 'Sin departamento';
+      const key = `${tipo}-${departamento}`;
+  
+      if (!acc[key]) {
+        acc[key] = { tipo, departamento, cantidad: 0 };
+      }
+      acc[key].cantidad += 1;
+  
+      return acc;
+    }, {});
+  
+    const reportDataArray = Object.values(reportData);
 
   return (
     <>
@@ -72,15 +92,16 @@ export const Beneficiary = () => {
                   </TableCaption>
                   {user.role !== 'user' && user.role !== 'managerIT' ? (
                     <TableCaption placement='bottom'>
-                      <Button
-                        size='sm'
-                        onClick={beneficiaryModal.onOpen}
+                      <PDFDownloadLink
+                        document={<ReportPDF data={reportDataArray} />}
+                        fileName='reporte_beneficiarios.pdf'
                       >
-                        <MdAddCircle
-                          className='mr-1'
-                        />
-                        Generar Reporte
-                      </Button>
+                        {({ loading }) => (
+                          <Button size='sm'>
+                            {loading ? 'Generando...' : 'Generar Reporte'}
+                          </Button>
+                        )}
+                      </PDFDownloadLink>
                     </TableCaption>
                   ) : (
                     null
