@@ -13,11 +13,11 @@ import {
   EditIcon,
   IconButton
 } from '@chakra-ui/icons'
-import { useUserAuth } from '@/store/auth';
-import { useDepartments } from "@/store/departments";
-import { useBeneficiaryStore } from '@/store/beneficiary';
-import { useUsers } from "@/store/users";
-import { useSchedule } from '@/store/schedule';
+import { useUserAuth } from '../../store/auth';
+import { useDepartments } from "../../store/departments";
+import { useBeneficiaryStore } from '../../store/beneficiary';
+import { useUsers } from "../../store/users";
+import { useSchedule } from '../../store/schedule';
 
 
 export const MenuComponent = ({type, idDepartment, idBeneficiary, idUser, idSchedule}) => {

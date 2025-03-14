@@ -22,10 +22,10 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
 import { ModalComponent } from '../../components/modal/Modal'
 import { useUsers } from '../../store/users';
 import { useBeneficiaryStore } from '../../store/beneficiary';
-import { useUserAuth } from '@/store/auth';
-import { MenuComponent } from '@components/menu/Menu';
+import { useUserAuth } from '../../store/auth';
+import { MenuComponent } from '../../components/menu/Menu';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import ReportPDF from '@components/report/ReportPDF';
+import ReportPDF from '../../components/report/ReportPDF';
 
 export const Beneficiary = () => {
 

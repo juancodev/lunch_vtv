@@ -20,9 +20,9 @@ import {
 import { BreadcrumbComponent } from "../../components/breadcrumb/Breadcrumb";
 import { ModalComponent } from "../../components/modal/Modal";
 import { MdAddCircle } from "react-icons/md";
-import { useSchedule } from '@/store/schedule';
-import { useUserAuth } from '@/store/auth';
-import { MenuComponent } from '@components/menu/Menu';
+import { useSchedule } from '../../store/schedule';
+import { useUserAuth } from '../../store/auth';
+import { MenuComponent } from '../../components/menu/Menu';
 
 export const Schedule = () => {
   const { schedules, schedule, getAxiosAllSchedule } = useSchedule();

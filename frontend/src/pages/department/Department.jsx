@@ -21,8 +21,8 @@ import { MdAddCircle } from "react-icons/md";
 import { ModalComponent } from '../../components/modal/Modal'
 import { useDepartments } from '../../store/departments';
 import { BreadcrumbComponent } from '../../components/breadcrumb/Breadcrumb';
-import { MenuComponent } from '@components/menu/Menu'
-import { useUserAuth } from '@/store/auth';
+import { MenuComponent } from '../../components/menu/Menu'
+import { useUserAuth } from '../../store/auth';
 
 export const Department = () => {
 
