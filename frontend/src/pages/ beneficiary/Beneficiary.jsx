@@ -23,6 +23,7 @@ import { ModalComponent } from '../../components/modal/Modal'
 import { useUsers } from '../../store/users';
 import { useBeneficiaryStore } from '../../store/beneficiary';
 import { useUserAuth } from '@/store/auth';
+import { MenuComponent } from '@components/menu/Menu';
 
 export const Beneficiary = () => {
 
@@ -69,12 +70,28 @@ export const Beneficiary = () => {
                       Agregar Beneficiario
                     </Button>
                   </TableCaption>
+                  {user.role !== 'user' && user.role !== 'managerIT' ? (
+                    <TableCaption placement='bottom'>
+                      <Button
+                        size='sm'
+                        onClick={beneficiaryModal.onOpen}
+                      >
+                        <MdAddCircle
+                          className='mr-1'
+                        />
+                        Generar Reporte
+                      </Button>
+                    </TableCaption>
+                  ) : (
+                    null
+                  )}
                   <Thead>
                     <Tr>
                       <Th>Nombre</Th>
                       <Th>Correo</Th>
                       <Th>Departamento</Th>
                       <Th>Dispone</Th>
+                      <Th>Beneficio</Th>
                       <Th>Opciones</Th>
                     </Tr>
                   </Thead>
@@ -87,6 +104,8 @@ export const Beneficiary = () => {
                             <Td>{beneficiaryData?.user?.email}</Td>
                             <Td>{beneficiaryData?.user?.department ? beneficiaryData?.user?.department?.name : 'Sin departamento'}</Td>
                             <Td>{beneficiaryData?.has ? 'Sí' : 'No'}</Td>
+                            <Td>{beneficiaryData?.schedule?.schedule}</Td>
+                            <Td><MenuComponent type={'beneficiary'}/></Td>
                           </Tr>
                         </>
                       ))

@@ -36,3 +36,23 @@ export const getOneUserWithEmail = async (email) => {
 
   return user;
 }
+
+export const updateUser = async (_id, data) => {
+  if (data.password) {
+    const password = await bcrypt.hash(data.password, 10);
+    const userData = {
+      ...data,
+      password: password
+    }
+    const updateUserData = await User.findByIdAndUpdate(_id, userData)
+    return updateUserData;
+  } else {
+    const updateUserData = await User.findByIdAndUpdate(_id, data);
+    return updateUserData;
+  }
+};
+
+export const deleteUser = async (_id) => {
+  const user = await User.findByIdAndDelete(_id);
+  return user;
+}
