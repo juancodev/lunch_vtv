@@ -46,10 +46,10 @@ export const ModalComponent = ({
     const { postCreateBeneficiary } = useBeneficiaryStore();
     const [department, setDepartment] = useState('');
     const [scheduleData, setScheduleData] = useState({
-      schedule: 'matutino',
-      day: 'lunes',
-      time: '7:00',
-      alias: 'am'
+      schedule: 'breakfast',
+      day: 'always',
+      time_start: '7:00',
+      time_end: '12:00'
     });
     const [beneficiaryData, setBeneficiaryData] = useState({
       user: '',
@@ -191,8 +191,9 @@ export const ModalComponent = ({
                       schedule: event.target.value
                     })}
                   >
-                    <option value={'matutino'}>Matutino</option>
-                    <option value={'vespertino'}>Vespertino</option>
+                    <option value={'Desayuno'}>Desayuno</option>
+                    <option value={'Almuerzo'}>Almuerzo</option>
+                    <option value={'Cena'}>Cena</option>
                   </Select>
                 </FormControl>
 
@@ -205,13 +206,9 @@ export const ModalComponent = ({
                       day: event.target.value
                     })}
                   >
-                    <option value={'lunes'}>Lunes</option>
-                    <option value={'martes'}>Martes</option>
-                    <option value={'miercoles'}>Miércoles</option>
-                    <option value={'jueves'}>Jueves</option>
-                    <option value={'viernes'}>Viernes</option>
-                    <option value={'sabado'}>Sábado</option>
-                    <option value={'domingo'}>Domingo</option>
+                    <option value={'Todos los dias'}>Todos los días</option>
+                    <option value={'Semanal'}>Lunes a Viernes</option>
+                    <option value={'Fines de semana'}>Fines de semana</option>
                   </Select>
                 </FormControl>
 
@@ -221,7 +218,7 @@ export const ModalComponent = ({
                     placeholder='Selecciona una hora...'
                     onChange={(event) => setScheduleData({
                       ...scheduleData,
-                      time: event.target.value
+                      time_start: event.target.value
                     })}
                   >
                     <option value={'07:00'}>7:00</option>
@@ -234,16 +231,20 @@ export const ModalComponent = ({
                 </FormControl>
 
                 <FormControl className='mb-4'>
-                  <FormLabel>Elige una Alias</FormLabel>
+                  <FormLabel>Elige una Hora de Fin</FormLabel>
                   <Select
                     placeholder='Selecciona una hora...'
                     onChange={(event) => setScheduleData({
                       ...scheduleData,
-                      alias: event.target.value
+                      time_end: event.target.value
                     })}
                   >
-                    <option value={'am'}>AM</option>
-                    <option value={'pm'}>PM</option>
+                    <option value={'07:00'}>7:00</option>
+                    <option value={'08:00'}>8:00</option>
+                    <option value={'09:00'}>9:00</option>
+                    <option value={'10:00'}>10:00</option>
+                    <option value={'11:00'}>11:00</option>
+                    <option value={'12:00'}>12:00</option>
                   </Select>
                 </FormControl>
               </ModalBody>

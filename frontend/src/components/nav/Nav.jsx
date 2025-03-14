@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
     Disclosure,
     DisclosureButton,
@@ -14,6 +15,7 @@ import {
 
 import { useNavigate, NavLink } from 'react-router'
 import { useUserAuth } from '../../store/auth'
+import { useProfile } from '../../store/profile'
 import imageLogo from '../../assets/login_logo.png'
 
 const navigation = [
@@ -47,7 +49,12 @@ const manageITNavigation = [
 export const NavBar = () => {
 
     const { user, logout } = useUserAuth();
+  const { userProfile, getFetchUserProfile } = useProfile();
     const navigate = useNavigate();
+
+    useEffect(() => {
+      getFetchUserProfile(user?._id)
+    }, [user?._id, getFetchUserProfile])
 
     const handleLogout = () => {
         logout();
@@ -103,7 +110,7 @@ export const NavBar = () => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={userProfile?.avatar}
                         className="size-8 rounded-full"
                       />
                     </MenuButton>
@@ -151,7 +158,7 @@ export const NavBar = () => {
           </DisclosurePanel>
         </Disclosure>
       )
-    } else if (user?.role === 'manage') {
+    } else if (user?.role === 'manager') {
       return (
         <Disclosure as="nav" className="bg-red-600">
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -200,7 +207,7 @@ export const NavBar = () => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={userProfile?.avatar}
                         className="size-8 rounded-full"
                       />
                     </MenuButton>
@@ -248,7 +255,7 @@ export const NavBar = () => {
           </DisclosurePanel>
         </Disclosure>
       )
-    } else if (user?.role === 'manageIT') {
+    } else if (user?.role === 'managerIT') {
       return (
         <Disclosure as="nav" className="bg-red-600">
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -297,7 +304,7 @@ export const NavBar = () => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={userProfile?.avatar}
                         className="size-8 rounded-full"
                       />
                     </MenuButton>
@@ -394,7 +401,7 @@ export const NavBar = () => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={userProfile?.avatar}
                         className="size-8 rounded-full"
                       />
                     </MenuButton>

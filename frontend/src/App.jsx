@@ -8,7 +8,8 @@ import { Users } from './pages/users/Users';
 import { Department } from "./pages/department/Department";
 import { Schedule } from "./pages/schedule/Schedule";
 import { Beneficiary } from "./pages/ beneficiary/Beneficiary";
-
+import {Menu} from "@pages/menu/Menu";
+ 
 function App() {
 
   return (
@@ -63,6 +64,15 @@ function App() {
                 <ProtectRoute>
                   <NavBar/>
                   <Beneficiary />
+                </ProtectRoute>
+              </>
+              }
+            />
+            <Route path="/menu" element={
+              <>
+                <ProtectRoute>
+                  <NavBar/>
+                  <Menu />
                 </ProtectRoute>
               </>
               }

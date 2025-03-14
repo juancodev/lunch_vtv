@@ -25,6 +25,11 @@ export const useBeneficiaryStore = create(
         set({ beneficiary: axiosAPI.data });
         return axiosAPI.data;
       },
+      deleteBeneficiary: async (id) => {
+        const axiosAPI = await axios.delete(`${urlAPI.beneficiary}/${id}`);
+        set({ beneficiary: axiosAPI.data });
+        return axiosAPI.data;
+      },
     }),
     {
       name: 'beneficiary-storage'

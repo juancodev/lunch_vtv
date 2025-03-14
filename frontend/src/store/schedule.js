@@ -24,6 +24,13 @@ export const useSchedule = create (
         });
         set({ schedule: axiosAPI.data });
         return axiosAPI.data;
+      },
+      deleteAxiosSchedule: async (id) => {
+        const axiosAPI = await axios.delete(`${urlAPI.schedule}/${id}`);
+        set((state) => ({
+          schedules: state.schedules.filter((item) => item._id !== id)
+        }))
+        return axiosAPI.data;
       }
     }),
     {

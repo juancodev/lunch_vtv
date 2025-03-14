@@ -19,3 +19,13 @@ export const createBeneficiary = async (data) => {
   const beneficiary = await Beneficiary.create(data);
   return beneficiary;
 }
+
+export const updateBeneficiary = async (_id, data) => {
+  const beneficiary = await Beneficiary.findByIdAndUpdate(_id, data);
+  return beneficiary;
+}
+
+export const deleteBeneficiary = async (_id) => {
+  const beneficiary = await Beneficiary.findByIdAndDelete(_id);
+  return beneficiary;
+}

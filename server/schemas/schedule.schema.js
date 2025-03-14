@@ -9,11 +9,11 @@ export const scheduleSchema = new Schema({
     type: String,
     required: true
   },
-  time: {
+  time_start: {
     type: String,
     required: true
   },
-  alias: {
+  time_end: {
     type: String,
     required: true
   },

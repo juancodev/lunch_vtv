@@ -30,3 +30,13 @@ export const listDepartmentsWithUserCount = async () => {
   ]);
   return departments;
 }
+
+export const updateDepartment = async (_id, data) => {
+  const department = await Department.findByIdAndUpdate(_id, data);
+  return department;
+}
+
+export const deleteDepartment = async (_id) => {
+  const department = await Department.findByIdAndDelete(_id);
+  return department;
+}
