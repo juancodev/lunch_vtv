@@ -8,7 +8,7 @@ import { Users } from './pages/users/Users';
 import { Department } from "./pages/department/Department";
 import { Schedule } from "./pages/schedule/Schedule";
 import { Beneficiary } from "./pages/ beneficiary/Beneficiary";
-import {Menu} from "@pages/menu/Menu";
+import {Menu} from "./pages/menu/Menu";
  
 function App() {
 
